@@ -1,56 +1,57 @@
 const filter = require('../filter');
 
-describe('', () => {
-    test('condition is a function', () => {
+describe('happy paths', () => {
+    test('predicate is a function', () => {
         const input = [
             { 'user': 'barney', 'age': 36, 'active': true },
             { 'user': 'fred', 'age': 40, 'active': false }
         ];
 
-        const condition = function(o) { return !o.active; };
+        const predicate = function(o) { return !o.active; };
 
-        const output = filter(input, condition);
+        const output = filter(input, predicate);
 
         const expected = [{ 'user': 'fred', 'age': 40, 'active': false }];
         expect(output).toEqual(expected);
     });
 
-    test('condition is an object', () => {
+    test('predicate is an object with multiple properties', () => {
         const input = [
-            { 'user': 'barney', 'age': 36, 'active': true },
-            { 'user': 'fred', 'age': 40, 'active': false }
+            { 'user': 'fred', 'age': 36, 'active': false },
+            { 'user': 'barney', 'age': 36, 'active': true }
         ];
 
-        const condition = { 'age': 36, 'active': true };
+        const predicate = { 'age': 36, 'active': true };
 
-        const output = filter(input, condition);
+        const output = filter(input, predicate);
 
         const expected = [{ 'user': 'barney', 'age': 36, 'active': true }];
         expect(output).toEqual(expected);
     });
 
-    test('condition is an array', () => {
+    test('predicate is an array, representing one property', () => {
         const input = [
             { 'user': 'barney', 'age': 36, 'active': true },
             { 'user': 'fred', 'age': 40, 'active': false }
         ];
 
-        const condition = ['active', false];
+        const predicate = ['active', false];
 
-        const output = filter(input, condition);
+        const output = filter(input, predicate);
 
         const expected = [{ 'user': 'fred', 'age': 40, 'active': false }];
         expect(output).toEqual(expected);
     });
-    test('condition is a string', () => {
+
+    test('predicate is a string representing a key, where value === true', () => {
         const input = [
             { 'user': 'barney', 'age': 36, 'active': true },
             { 'user': 'fred', 'age': 40, 'active': false }
         ];
 
-        const condition = 'active';
+        const predicate = 'active';
 
-        const output = filter(input, condition);
+        const output = filter(input, predicate);
 
         const expected = [{ 'user': 'barney', 'age': 36, 'active': true}];
         expect(output).toEqual(expected);

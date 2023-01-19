@@ -1,57 +1,56 @@
-const map = require('./map');
+function filter(collection, predicate) {
+    const predicateIsArray = Array.isArray(predicate);
+    const predicateIsObject = !predicateIsArray && typeof predicate === 'object' && predicate !== null;
+    const predicateIsString = typeof predicate === 'string';
+    const predicateIsFunction = typeof predicate === 'function';
 
-function filter(arr, condition) {
-    const m = 'empty';
-    if (arr.length === 0) return m;
-    const resultarr = [];
-    if(Array.isArray(condition))
-    {
-        for (let i = 0 ; i < arr.length ; i++)
-        {
-            const values = arr[i][condition[0]];;
-            if(arr[i].hasOwnProperty(condition[0])&&
-            values === condition[1])
-            resultarr.push(arr[i]);
-        }       
+    const filteredArray = [];
+
+    if (predicateIsFunction) {
+        for (let i = 0; i < collection.length; i++){
+            if ( predicate(collection[i]) ) {
+                filteredArray.push(collection[i]);
+            }
+        }
     }
-    else if (typeof condition === 'object' && condition !== null)
-    {
-        const conditionKeys = Object.keys(condition);
-        const conditionValues = Object.values(condition);
-        const conditionLength = conditionKeys.length;
-        
-        for (let i = 0; i < arr.length; i++)
-        {
-            let jPassed = 0;
 
-            for (let j = 0; j < conditionLength; j++)
-            {
-                if (!arr[i].hasOwnProperty(conditionKeys[j])) break;
+    if (predicateIsObject) {
+        for (let i = 0; i < collection.length; i++) {
+            let propertiesCount = 0;
+            let itemHasPropertyCount = 0
 
-                if (!arr[i][conditionKeys[j]] === conditionValues[j]) break;
+            for (const key in predicate) {
+                propertiesCount++;
                 
-                jPassed++;
+                if (collection[i][key] !== predicate[key]) break;
+
+                itemHasPropertyCount++;
             }
             
-            if (jPassed === conditionLength) resultarr.push(arr[i]);
-        }
-    }
-    else if (typeof condition === 'string'&& condition!== null)
-    {
-        for(let i = 0;i<arr.length;i++)
-        {
-            if(arr[i].hasOwnProperty(condition)&& arr[i][condition]===true)
-            resultarr.push(arr[i]);
-        }
-    }
-     else {
-        for (let i = 0 ; i < arr.length ; i++)
-        {
-            if (condition(arr[i]) ) resultarr.push(arr[i]);
+            if (itemHasPropertyCount === propertiesCount) {
+                filteredArray.push(collection[i]);
+            }
         }
     }
 
-    return resultarr;
+    if (predicateIsArray) {
+        for (let i = 0 ; i < collection.length ; i++)
+        {
+            if (collection[i][predicate[0]] === predicate[1]) {
+                filteredArray.push(collection[i]);
+            }
+        }       
+    }
+
+    if (predicateIsString) {
+        for (let i = 0; i < collection.length; i++) {
+            if (collection[i][predicate]) {
+                filteredArray.push(collection[i]);
+            }
+        }
+    }
+
+    return filteredArray;
 }
 
 module.exports = filter;
