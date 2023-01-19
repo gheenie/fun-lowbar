@@ -1,17 +1,62 @@
 const map = require('../map');
 
-describe('', () => {
-    test('empty array should give an empty array', () => {
-        const input = [];
-        const output = map(input);
+describe('happy paths', () => {
+    function square(n) {
+        return n * n;
+    }
 
-        expect(output).toEqual('empty');
+    test('empty array', () => {
+        const input1 = [];
+        const input2 = square;
+
+        const output = map(input1, input2);
+
+        const expected = [];
+        expect(output).toEqual(expected);
     });
-    test('the array should be squared', () => {
-        const input = [1,2,3];
-        function fofo(num)
-        {return num*num;}
-        const expected = map(input,fofo);
-        expect(expected).toEqual([1,4,9]);
+
+    test('one array', () => {
+        const input1 = [4, 8];
+        const input2 = square;
+        
+        const output = map(input1, input2);
+
+        const expected = [16, 64];
+        expect(output).toEqual(expected);
+    });
+
+    test('empty object', () => {
+        const input1 = {};
+        const input2 = square;
+        
+        // unguaranteed iteration order. sort() to make assertion easier.
+        const output = map(input1, input2).sort();
+
+        const expected = [];
+        expect(output).toEqual(expected);
+    });
+
+    test('one object', () => {
+        const input1 = { 'a': 4, 'b': 8 };
+        const input2 = square;
+        
+        // unguaranteed iteration order. sort() to make assertion easier.
+        const output = map(input1, input2).sort();
+
+        const expected = [16, 64];
+        expect(output).toEqual(expected);
+    });
+
+    test('array of multiple objects, string for input2', () => {
+        const input1 = [
+            { 'user': 'barney' },
+            { 'user': 'fred' }
+        ];
+        const input2 = 'user';
+        
+        const output = map(input1, input2);
+
+        const expected = ['barney', 'fred'];
+        expect(output).toEqual(expected);
     });
 });
