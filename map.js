@@ -6,7 +6,7 @@ function map(collection, iterator)
     
     const mappedArray = [];
 
-    if (collectionIsArray) {
+    if (collectionIsArray && !iteratorIsString) {
         for (let i = 0; i < collection.length; i++) {
             mappedArray.push( iterator(collection[i]) );
         }
@@ -17,6 +17,12 @@ function map(collection, iterator)
         
         for (let i = 0; i < collectionValues.length; i++) {
             mappedArray.push( iterator(collectionValues[i]) );
+        }
+    }
+
+    if (collectionIsArray && iteratorIsString) {
+        for (let i = 0; i < collection.length; i++) {
+            mappedArray.push(collection[i][iterator]);
         }
     }
 
