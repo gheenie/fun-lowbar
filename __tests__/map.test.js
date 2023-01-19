@@ -1,4 +1,4 @@
-const map = require('../map');
+const map = require('../katas/map');
 
 describe('happy paths', () => {
     function square(n) {

@@ -1,4 +1,4 @@
-const filter = require('../filter');
+const filter = require('../katas/filter');
 
 describe('happy paths', () => {
     test('predicate is a function', () => {

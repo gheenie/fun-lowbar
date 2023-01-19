@@ -1,4 +1,4 @@
-const fromPairs = require('../from-pairs');
+const fromPairs = require('../katas/from-pairs');
 
 describe('happy paths', () => {
     test('empty array', () => {

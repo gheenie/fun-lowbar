@@ -1,4 +1,4 @@
-const { identity } = require('../lowbar');
+const { identity } = require('../katas/lowbar');
 
 // don't forget to export and import each of your new functions!
 

@@ -1,4 +1,4 @@
-const times = require('../times');
+const times = require('../katas/times');
 
 describe('happy paths', () => {
     const return2 = () => {

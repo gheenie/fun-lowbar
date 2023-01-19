@@ -1,4 +1,4 @@
-const forEach = require('../for-each');
+const forEach = require('../katas/for-each');
 
 describe('happy paths, function returns value', () => {
     function double(n) {
