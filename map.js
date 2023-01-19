@@ -1,13 +1,12 @@
-function map(arr,func)
+function map(collection, iterator)
 {
-    const m = 'empty';
-    let resultarr =[];
-    if(arr.length === 0)
-    return m;
-    for(let i = 0 ; i < arr.length ; i++)
+    const mappedArray = [];
+
+    for (let i = 0; i < collection.length; i++)
     {
-        resultarr.push(func(arr[i]));
+        mappedArray.push( iterator(collection[i]) );
     }
-    return resultarr;
+    
+    return mappedArray;
 }
 module.exports = map;
