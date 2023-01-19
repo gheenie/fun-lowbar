@@ -2,11 +2,11 @@ function map(collection, iteratee)
 {
     const collectionIsArray = Array.isArray(collection);
     const collectionIsObject = !collectionIsArray && typeof collection === 'object' && collection !== null;
-    const iteratorIsString = typeof iteratee === 'string'
+    const iterateeIsString = typeof iteratee === 'string'
     
     const mappedArray = [];
 
-    if (collectionIsArray && !iteratorIsString) {
+    if (collectionIsArray && !iterateeIsString) {
         for (let i = 0; i < collection.length; i++) {
             mappedArray.push( iteratee(collection[i]) );
         }
@@ -20,7 +20,7 @@ function map(collection, iteratee)
         }
     }
 
-    if (collectionIsArray && iteratorIsString) {
+    if (collectionIsArray && iterateeIsString) {
         for (let i = 0; i < collection.length; i++) {
             mappedArray.push(collection[i][iteratee]);
         }
