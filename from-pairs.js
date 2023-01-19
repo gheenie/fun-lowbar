@@ -1,11 +1,15 @@
 function fromPairs(arr) {
-    const copyArr = JSON.parse( JSON.stringify(arr) );
+    // [[key0, value0], [key1, value1]] to { key0: value0, key1: value1}
+    
+    const keyValuePairs = JSON.parse( JSON.stringify(arr) );
 
-    const pairs = {};
+    const singleObj = {};
+
     for (let i = 0; i < copyArr.length; i++) {
-        pairs[copyArr[i][0]] = copyArr[i][1];
+        singleObj[keyValuePairs[i][0]] = keyValuePairs[i][1];
     }
-    return pairs;
+
+    return singleObj;
 }
 
 module.exports = fromPairs;

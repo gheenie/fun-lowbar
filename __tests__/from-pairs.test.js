@@ -10,7 +10,7 @@ describe('fromPairs()', () => {
         expect(output).toEqual(expected);
     });
 
-    test('one item', () => {
+    test('one property', () => {
         const input = [['a', 1]];
 
         const output = fromPairs(input);
@@ -19,7 +19,7 @@ describe('fromPairs()', () => {
         expect(output).toEqual(expected);
     });
 
-    test('three items, more complex keys and values', () => {
+    test('three properties, more complex keys and values', () => {
         const input = [['a', 1], [2, 'b'], ['multiple words', 'double word']];
 
         const output = fromPairs(input);
