@@ -1,21 +1,30 @@
 const forEach = require('../for-each');
 
-describe('', () => {
-    test('the passed element is array', () => {
-        const input = [1, 2];
-        function fofo(num)
-        {return num *2;}
-        const output = forEach(input,fofo);
+function double(n) {
+    return n * 2;
+}
 
-        const expected = [2,4];
-        expect(output).toBe(expected);
+function combineValueKey(value, key) {
+    return value + key;
+}
+
+describe('happy paths, function returns value', () => {
+    test('input1 is array, input2 is one-argument func', () => {
+        const input = [1, 2];
+
+        const output = forEach(input, double);
+
+        const expected = [2, 4];
+        expect(output).toEqual(expected);
     });
-    test('the passed element is object', () => {
+
+    test('input1 is object, input2 is two-argument func', () => {
         const input = { 'a': 1, 'b': 2 };
-        function fofo(num)
-        {return num *2;}
-        const output = forEach(input,fofo);
-        const expected = { 'a': 2, 'b': 4 };
-        expect(output).toBe(expected);
+
+        // unguaranteed iteration order. sort() to make assertion easier.
+        const output = forEach(input, combineValueKey);
+
+        const expected = ['1a', '2b'];
+        expect(output).toEqual(expected);
     });
 });
