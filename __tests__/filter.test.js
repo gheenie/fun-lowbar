@@ -42,4 +42,17 @@ describe('', () => {
         const expected = [{ 'user': 'fred', 'age': 40, 'active': false }];
         expect(output).toEqual(expected);
     });
+    test('condition is a string', () => {
+        const input = [
+            { 'user': 'barney', 'age': 36, 'active': true },
+            { 'user': 'fred', 'age': 40, 'active': false }
+        ];
+
+        const condition = 'active';
+
+        const output = filter(input, condition);
+
+        const expected = [{ 'user': 'barney', 'age': 36, 'active': true}];
+        expect(output).toEqual(expected);
+    });
 });
