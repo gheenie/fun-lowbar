@@ -1,5 +1,4 @@
-function map(collection, iteratee)
-{
+function map(collection, iteratee) {
     const collectionIsArray = Array.isArray(collection);
     const collectionIsObject = !collectionIsArray && typeof collection === 'object' && collection !== null;
     const iterateeIsString = typeof iteratee === 'string'
