@@ -29,8 +29,7 @@ describe('happy paths', () => {
         const input1 = {};
         const input2 = square;
         
-        // unguaranteed iteration order. sort() to make assertion easier.
-        const output = map(input1, input2).sort();
+        const output = map(input1, input2);
 
         const expected = [];
         expect(output).toEqual(expected);

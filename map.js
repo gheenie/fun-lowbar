@@ -1,14 +1,14 @@
-function map(collection, iterator)
+function map(collection, iteratee)
 {
     const collectionIsArray = Array.isArray(collection);
     const collectionIsObject = !collectionIsArray && typeof collection === 'object' && collection !== null;
-    const iteratorIsString = typeof iterator === 'string'
+    const iteratorIsString = typeof iteratee === 'string'
     
     const mappedArray = [];
 
     if (collectionIsArray && !iteratorIsString) {
         for (let i = 0; i < collection.length; i++) {
-            mappedArray.push( iterator(collection[i]) );
+            mappedArray.push( iteratee(collection[i]) );
         }
     }
 
@@ -16,13 +16,13 @@ function map(collection, iterator)
         const collectionValues = Object.values(collection);
         
         for (let i = 0; i < collectionValues.length; i++) {
-            mappedArray.push( iterator(collectionValues[i]) );
+            mappedArray.push( iteratee(collectionValues[i]) );
         }
     }
 
     if (collectionIsArray && iteratorIsString) {
         for (let i = 0; i < collection.length; i++) {
-            mappedArray.push(collection[i][iterator]);
+            mappedArray.push(collection[i][iteratee]);
         }
     }
 
