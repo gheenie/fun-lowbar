@@ -1,4 +1,4 @@
-function for_each(arr,condition) {
+function forEach(arr,condition) {
 const resultArr = [];
 console.log(typeof arr);
 switch(typeof arr)
@@ -25,4 +25,4 @@ switch(typeof arr)
     return resultArr;
 }
 
-module.exports = for_each;
+module.exports = forEach;
