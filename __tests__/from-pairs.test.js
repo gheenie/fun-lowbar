@@ -1,6 +1,6 @@
 const fromPairs = require('../from-pairs');
 
-describe('fromPairs()', () => {
+describe('happy paths', () => {
     test('empty array', () => {
         const input = [];
 
