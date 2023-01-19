@@ -1,18 +1,37 @@
 const times = require('../times');
-describe('', () => {
-    test('a function without a reurned value', () => {
-     
-        function fofo ()
-        {return 2;};
-       /* const mock = jest.fn( times(3, func) );
-        expect(mock).toHaveBeenCalledTimes(3);      */   
-        expect(times(3,fofo)).toEqual([2,2,2]);
+
+describe('happy paths', () => {
+    const return2 = () => {
+        return 2;
+    };
+
+    test('function called 0 times', () => {
+        const input1 = 0;
+        const input2 = return2;
+
+        const output = times(input1, input2);
+
+        const expected = [];
+        expect(output).toEqual(expected);
     });
-    test('if the number of times was 0', () => {
-     
-        function fofo ()
-        {return 2;}; 
-        const ma = 'call times is 0';
-        expect(times(0,fofo)).toEqual(ma);
+
+    test('function called 3 times', () => {
+        const input1 = 3;
+        const input2 = return2;
+
+        const output = times(input1, input2);
+
+        const expected = [2, 2, 2];
+        expect(output).toEqual(expected);
+    });
+
+    test('call String() 3 times', () => {
+        const input1 = 3;
+        const input2 = String;
+
+        const output = times(input1, input2);
+
+        const expected = ['', '', ''];
+        expect(output).toEqual(expected);
     });
 });

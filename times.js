@@ -1,16 +1,15 @@
-function times(num,func)
+function times(num, func)
 {
-    const ma = 'call times is 0';
-    let arr=[];
-    let value = 0;
-    if(num === 0)
-    return ma;
-    for(let i = 0 ;i<num;i++)
+    // Call func num number of times. Return an array of results.
+
+    const results = [];
+
+    for (let i = 0 ; i < num; i++)
     {
-        value= func();
-        arr.push(value);
+        results.push( func() );
     }
-    return arr ;
+
+    return results;
 }
 
 module.exports = times;
