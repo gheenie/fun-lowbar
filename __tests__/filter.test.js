@@ -6,10 +6,9 @@ describe('happy paths', () => {
             { 'user': 'barney', 'age': 36, 'active': true },
             { 'user': 'fred', 'age': 40, 'active': false }
         ];
+        const input2 = function(o) { return !o.active; };
 
-        const predicate = function(o) { return !o.active; };
-
-        const output = filter(input, predicate);
+        const output = filter(input, input2);
 
         const expected = [{ 'user': 'fred', 'age': 40, 'active': false }];
         expect(output).toEqual(expected);
@@ -20,10 +19,9 @@ describe('happy paths', () => {
             { 'user': 'fred', 'age': 36, 'active': false },
             { 'user': 'barney', 'age': 36, 'active': true }
         ];
+        const input2 = { 'age': 36, 'active': true };
 
-        const predicate = { 'age': 36, 'active': true };
-
-        const output = filter(input, predicate);
+        const output = filter(input, input2);
 
         const expected = [{ 'user': 'barney', 'age': 36, 'active': true }];
         expect(output).toEqual(expected);
@@ -34,10 +32,9 @@ describe('happy paths', () => {
             { 'user': 'barney', 'age': 36, 'active': true },
             { 'user': 'fred', 'age': 40, 'active': false }
         ];
+        const input2 = ['active', false];
 
-        const predicate = ['active', false];
-
-        const output = filter(input, predicate);
+        const output = filter(input, input2);
 
         const expected = [{ 'user': 'fred', 'age': 40, 'active': false }];
         expect(output).toEqual(expected);
@@ -48,10 +45,9 @@ describe('happy paths', () => {
             { 'user': 'barney', 'age': 36, 'active': true },
             { 'user': 'fred', 'age': 40, 'active': false }
         ];
+        const input2 = 'active';
 
-        const predicate = 'active';
-
-        const output = filter(input, predicate);
+        const output = filter(input, input2);
 
         const expected = [{ 'user': 'barney', 'age': 36, 'active': true}];
         expect(output).toEqual(expected);
